@@ -8,7 +8,7 @@ from app.schemas.user import Token, UserCreate, UserResponse
 from app.services.auth_service import authenticate_user, create_access_token, get_password_hash
 from app.models.user import User
 
-router = APIRouter(tags=["Authentication"])
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 async def register_user(user_data: UserCreate, db: AsyncSession = Depends(get_db)):
