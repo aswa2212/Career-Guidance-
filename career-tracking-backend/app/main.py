@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db, engine
 from app import models
-from app.routers import auth, aptitude, suggestions, career, college, timeline, user
+from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course
 
 app = FastAPI(
     title="Personalized Career Tracking API",
@@ -32,6 +32,7 @@ app.include_router(auth.router)
 app.include_router(aptitude.router)
 app.include_router(suggestions.router)
 app.include_router(career.router)
+app.include_router(course.router)
 app.include_router(college.router)
 app.include_router(timeline.router)
 app.include_router(user.router)
