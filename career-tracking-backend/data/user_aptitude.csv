@@ -1,0 +1,51 @@
+user_id,aptitude_area,score
+1,Logical Reasoning,85
+1,Quantitative,78
+1,Verbal,72
+1,Technical,88
+1,Creative,65
+1,Analytical,82
+1,Communication,70
+1,Leadership,68
+1,Problem Solving,86
+1,Spatial,75
+2,Logical Reasoning,92
+2,Quantitative,95
+2,Verbal,80
+2,Technical,90
+2,Creative,70
+2,Analytical,94
+2,Communication,75
+2,Leadership,72
+2,Problem Solving,91
+2,Spatial,78
+3,Logical Reasoning,76
+3,Quantitative,68
+3,Verbal,88
+3,Technical,65
+3,Creative,92
+3,Analytical,74
+3,Communication,90
+3,Leadership,85
+3,Problem Solving,79
+3,Spatial,82
+4,Logical Reasoning,88
+4,Quantitative,85
+4,Verbal,82
+4,Technical,91
+4,Creative,78
+4,Analytical,87
+4,Communication,80
+4,Leadership,75
+4,Problem Solving,89
+4,Spatial,83
+5,Logical Reasoning,70
+5,Quantitative,72
+5,Verbal,85
+5,Technical,68
+5,Creative,88
+5,Analytical,76
+5,Communication,92
+5,Leadership,89
+5,Problem Solving,74
+5,Spatial,71

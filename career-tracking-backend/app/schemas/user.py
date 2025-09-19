@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -13,6 +13,7 @@ class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None
     full_name: Optional[str] = None
     password: Optional[str] = None
+    interests: Optional[List[str]] = None
 
 class UserInDB(UserBase):
     id: int
@@ -20,6 +21,7 @@ class UserInDB(UserBase):
     role: str = "user"
     created_at: datetime
     updated_at: datetime
+    interests: Optional[List[str]] = None
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -32,3 +34,6 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+class UserInterestsUpdate(BaseModel):
+    interests: List[str]

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Boolean, DateTime, func
+from sqlalchemy import Column, String, Integer, Boolean, DateTime, func, JSON
 from sqlalchemy.orm import relationship
 import enum
 
@@ -17,6 +17,7 @@ class User(BaseModel):
     is_active = Column(Boolean, default=True)
     role = Column(String(20), default="user", nullable=False)
     last_login = Column(DateTime, nullable=True)
+    interests = Column(JSON, nullable=True, default=list)
     
     # Relationships
     # aptitude_results = relationship("AptitudeTest", back_populates="user")

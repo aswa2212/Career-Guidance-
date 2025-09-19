@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db, engine
 from app import models
-from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course
+from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course, recommendations
 
 app = FastAPI(
     title="Personalized Career Tracking API",
@@ -15,7 +15,7 @@ app = FastAPI(
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",  # Allow localhost and 127.0.0.1 on any port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,6 +36,7 @@ app.include_router(course.router)
 app.include_router(college.router)
 app.include_router(timeline.router)
 app.include_router(user.router)
+app.include_router(recommendations.router)
 
 @app.get("/")
 async def read_root():
