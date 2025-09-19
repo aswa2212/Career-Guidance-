@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "question": "If 2x + 3 = 11, what is the value of x?",
+    "options": [
+      "A) 3",
+      "B) 4",
+      "C) 5",
+      "D) 6"
+    ],
+    "correct_answer": "B",
+    "subject": "Mathematics",
+    "difficulty": "Easy",
+    "topic": "Algebra",
+    "explanation": "Solving: 2x + 3 = 11, 2x = 8, x = 4",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Data Science, Finance, Research, Teaching"
+  },
+  {
+    "id": 2,
+    "question": "What is the area of a circle with radius 7 cm?",
+    "options": [
+      "A) 154 cm²",
+      "B) 144 cm²",
+      "C) 164 cm²",
+      "D) 174 cm²"
+    ],
+    "correct_answer": "A",
+    "subject": "Mathematics",
+    "difficulty": "Medium",
+    "topic": "Geometry",
+    "explanation": "Area = πr² = (22/7) × 7² = 154 cm²",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Data Science, Finance, Research, Teaching"
+  },
+  {
+    "id": 3,
+    "question": "If log₂(8) = x, what is the value of x?",
+    "options": [
+      "A) 2",
+      "B) 3",
+      "C) 4",
+      "D) 8"
+    ],
+    "correct_answer": "B",
+    "subject": "Mathematics",
+    "difficulty": "Medium",
+    "topic": "Logarithms",
+    "explanation": "log₂(8) = log₂(2³) = 3",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Data Science, Finance, Research, Teaching"
+  },
+  {
+    "id": 4,
+    "question": "What is the SI unit of force?",
+    "options": [
+      "A) Joule",
+      "B) Newton",
+      "C) Watt",
+      "D) Pascal"
+    ],
+    "correct_answer": "B",
+    "subject": "Physics",
+    "difficulty": "Easy",
+    "topic": "Mechanics",
+    "explanation": "Newton (N) is the SI unit of force",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Research, Astronomy, Medical Physics, Teaching"
+  },
+  {
+    "id": 5,
+    "question": "What is the acceleration due to gravity on Earth?",
+    "options": [
+      "A) 9.8 m/s²",
+      "B) 10 m/s²",
+      "C) 8.9 m/s²",
+      "D) 11 m/s²"
+    ],
+    "correct_answer": "A",
+    "subject": "Physics",
+    "difficulty": "Easy",
+    "topic": "Mechanics",
+    "explanation": "The acceleration due to gravity on Earth is approximately 9.8 m/s²",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Research, Astronomy, Medical Physics, Teaching"
+  },
+  {
+    "id": 6,
+    "question": "What is the chemical symbol for Gold?",
+    "options": [
+      "A) Go",
+      "B) Au",
+      "C) Ag",
+      "D) Gd"
+    ],
+    "correct_answer": "B",
+    "subject": "Chemistry",
+    "difficulty": "Easy",
+    "topic": "Periodic Table",
+    "explanation": "Au is the chemical symbol for Gold (from Latin: Aurum)",
+    "source": "Educational Database",
+    "career_relevance": "Chemical Engineering, Pharmaceuticals, Research, Medicine, Teaching"
+  },
+  {
+    "id": 7,
+    "question": "What is the pH of pure water at 25°C?",
+    "options": [
+      "A) 6",
+      "B) 7",
+      "C) 8",
+      "D) 9"
+    ],
+    "correct_answer": "B",
+    "subject": "Chemistry",
+    "difficulty": "Easy",
+    "topic": "Acids and Bases",
+    "explanation": "Pure water has a pH of 7, which is neutral",
+    "source": "Educational Database",
+    "career_relevance": "Chemical Engineering, Pharmaceuticals, Research, Medicine, Teaching"
+  },
+  {
+    "id": 8,
+    "question": "What is the powerhouse of the cell?",
+    "options": [
+      "A) Nucleus",
+      "B) Mitochondria",
+      "C) Ribosome",
+      "D) Chloroplast"
+    ],
+    "correct_answer": "B",
+    "subject": "Biology",
+    "difficulty": "Easy",
+    "topic": "Cell Biology",
+    "explanation": "Mitochondria are called the powerhouse of the cell as they produce ATP",
+    "source": "Educational Database",
+    "career_relevance": "Medicine, Biotechnology, Research, Environmental Science, Teaching"
+  },
+  {
+    "id": 9,
+    "question": "How many chambers does a human heart have?",
+    "options": [
+      "A) 2",
+      "B) 3",
+      "C) 4",
+      "D) 5"
+    ],
+    "correct_answer": "C",
+    "subject": "Biology",
+    "difficulty": "Easy",
+    "topic": "Human Physiology",
+    "explanation": "The human heart has 4 chambers: 2 atria and 2 ventricles",
+    "source": "Educational Database",
+    "career_relevance": "Medicine, Biotechnology, Research, Environmental Science, Teaching"
+  },
+  {
+    "id": 10,
+    "question": "What does CPU stand for?",
+    "options": [
+      "A) Central Processing Unit",
+      "B) Computer Personal Unit",
+      "C) Central Program Unit",
+      "D) Computer Processing Unit"
+    ],
+    "correct_answer": "A",
+    "subject": "Computer Science",
+    "difficulty": "Easy",
+    "topic": "Computer Hardware",
+    "explanation": "CPU stands for Central Processing Unit",
+    "source": "Educational Database",
+    "career_relevance": "Software Development, Data Science, Cybersecurity, AI/ML, IT"
+  },
+  {
+    "id": 11,
+    "question": "Which of the following is a programming language?",
+    "options": [
+      "A) HTML",
+      "B) Python",
+      "C) CSS",
+      "D) HTTP"
+    ],
+    "correct_answer": "B",
+    "subject": "Computer Science",
+    "difficulty": "Easy",
+    "topic": "Programming",
+    "explanation": "Python is a programming language, while HTML and CSS are markup languages, and HTTP is a protocol",
+    "source": "Educational Database",
+    "career_relevance": "Software Development, Data Science, Cybersecurity, AI/ML, IT"
+  },
+  {
+    "id": 12,
+    "question": "What is the synonym of \"Happy\"?",
+    "options": [
+      "A) Sad",
+      "B) Joyful",
+      "C) Angry",
+      "D) Tired"
+    ],
+    "correct_answer": "B",
+    "subject": "English",
+    "difficulty": "Easy",
+    "topic": "Vocabulary",
+    "explanation": "Joyful is a synonym of Happy",
+    "source": "Educational Database",
+    "career_relevance": "Literature, Journalism, Content Writing, Teaching, Communications"
+  },
+  {
+    "id": 13,
+    "question": "What is the past tense of \"run\"?",
+    "options": [
+      "A) Runned",
+      "B) Ran",
+      "C) Running",
+      "D) Runs"
+    ],
+    "correct_answer": "B",
+    "subject": "English",
+    "difficulty": "Easy",
+    "topic": "Grammar",
+    "explanation": "The past tense of \"run\" is \"ran\"",
+    "source": "Educational Database",
+    "career_relevance": "Literature, Journalism, Content Writing, Teaching, Communications"
+  },
+  {
+    "id": 14,
+    "question": "What comes next in the series: 2, 4, 8, 16, ?",
+    "options": [
+      "A) 24",
+      "B) 32",
+      "C) 20",
+      "D) 18"
+    ],
+    "correct_answer": "B",
+    "subject": "Logical Reasoning",
+    "difficulty": "Easy",
+    "topic": "Number Series",
+    "explanation": "Each number is doubled: 2×2=4, 4×2=8, 8×2=16, 16×2=32",
+    "source": "Educational Database",
+    "career_relevance": "Management, Law, Consulting, Problem Solving, Analytics"
+  },
+  {
+    "id": 15,
+    "question": "If all roses are flowers and some flowers are red, which statement is correct?",
+    "options": [
+      "A) All roses are red",
+      "B) Some roses may be red",
+      "C) No roses are red",
+      "D) All flowers are roses"
+    ],
+    "correct_answer": "B",
+    "subject": "Logical Reasoning",
+    "difficulty": "Medium",
+    "topic": "Syllogism",
+    "explanation": "Since some flowers are red and all roses are flowers, some roses may be red",
+    "source": "Educational Database",
+    "career_relevance": "Management, Law, Consulting, Problem Solving, Analytics"
+  }
+]

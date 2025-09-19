@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db, engine
 from app import models
-from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course, recommendations, courses, colleges
+from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course, courses, colleges, recommendations
 
 app = FastAPI(
     title="NEXTSTEP Career Guidance API",

@@ -1,0 +1,29 @@
+# Web Scraping Dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+html5lib>=1.1
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Async Support (optional for faster scraping)
+aiohttp>=3.8.0
+asyncio
+
+# Rate Limiting
+ratelimit>=2.2.0
+
+# User Agent Rotation
+fake-useragent>=1.4.0
+
+# Selenium (for JavaScript-heavy sites, optional)
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# Progress Tracking
+tqdm>=4.66.0

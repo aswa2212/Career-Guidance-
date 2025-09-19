@@ -1,0 +1,30 @@
+{
+  "folders": [
+    {
+      "name": "Frontend",
+      "path": "./Frontend"
+    },
+    {
+      "name": "Backend",
+      "path": "./career-tracking-backend"
+    }
+  ],
+  "settings": {
+    "json.validate.enable": false,
+    "json.schemaDownload.enable": false,
+    "problems.decorations.enabled": false,
+    "editor.formatOnSave": true,
+    "files.associations": {
+      "*.json": "json"
+    },
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "npm.enableScriptExplorer": true
+  },
+  "extensions": {
+    "recommendations": [
+      "bradlc.vscode-tailwindcss",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "name": "University of Kashmir",
+    "address": "Hazratbal, Srinagar, Jammu and Kashmir, India",
+    "city": "Srinagar",
+    "state": "Jammu and Kashmir",
+    "pincode": "190006",
+    "website": "https://www.kashmiruniversity.net",
+    "latitude": 34.1269,
+    "longitude": 74.837,
+    "scholarship_details": "UGC scholarships, Merit scholarships, SC/ST/OBC scholarships, State government scholarships available."
+  },
+  {
+    "name": "University of Jammu",
+    "address": "Baba Saheb Ambedkar Road, Jammu, Jammu and Kashmir, India",
+    "city": "Jammu",
+    "state": "Jammu and Kashmir",
+    "pincode": "180006",
+    "website": "https://www.jammuuniversity.ac.in",
+    "latitude": 32.7266,
+    "longitude": 74.857,
+    "scholarship_details": "UGC scholarships, Merit scholarships, SC/ST/OBC scholarships, State government scholarships available."
+  },
+  {
+    "name": "Central University of Kashmir",
+    "address": "Nunar, Ganderbal, Jammu and Kashmir, India",
+    "city": "Ganderbal",
+    "state": "Jammu and Kashmir",
+    "pincode": "191201",
+    "website": "https://www.cukashmir.ac.in",
+    "latitude": 34.2307,
+    "longitude": 74.7847,
+    "scholarship_details": "Central government scholarships, UGC scholarships, Merit scholarships, Research fellowships available."
+  },
+  {
+    "name": "Central University of Jammu",
+    "address": "Bagla, Rahya-Suchani, Samba, Jammu and Kashmir, India",
+    "city": "Samba",
+    "state": "Jammu and Kashmir",
+    "pincode": "181143",
+    "website": "https://www.cujammu.ac.in",
+    "latitude": 32.5625,
+    "longitude": 75.1194,
+    "scholarship_details": "Central government scholarships, UGC scholarships, Merit scholarships, Research fellowships available."
+  },
+  {
+    "name": "National Institute of Technology Srinagar",
+    "address": "Hazratbal, Srinagar, Jammu and Kashmir, India",
+    "city": "Srinagar",
+    "state": "Jammu and Kashmir",
+    "pincode": "190006",
+    "website": "https://www.nitsri.ac.in",
+    "latitude": 34.1269,
+    "longitude": 74.837,
+    "scholarship_details": "Technical education scholarships, Merit scholarships, Industry scholarships, JEE-based scholarships available."
+  },
+  {
+    "name": "Government Medical College Srinagar",
+    "address": "Karan Nagar, Srinagar, Jammu and Kashmir, India",
+    "city": "Srinagar",
+    "state": "Jammu and Kashmir",
+    "pincode": "190010",
+    "website": "https://www.gmcsrinagar.edu.in",
+    "latitude": 34.0837,
+    "longitude": 74.7973,
+    "scholarship_details": "Medical education scholarships, NEET-based scholarships, Government medical scholarships available."
+  },
+  {
+    "name": "Government Medical College Jammu",
+    "address": "Sector 5, Bhagwati Nagar, Jammu, Jammu and Kashmir, India",
+    "city": "Jammu",
+    "state": "Jammu and Kashmir",
+    "pincode": "180016",
+    "website": "https://www.gmcjammu.nic.in",
+    "latitude": 32.7266,
+    "longitude": 74.857,
+    "scholarship_details": "Medical education scholarships, NEET-based scholarships, Government medical scholarships available."
+  },
+  {
+    "name": "Government Degree College Srinagar",
+    "address": "M.A. Road, Srinagar, Jammu and Kashmir, India",
+    "city": "Srinagar",
+    "state": "Jammu and Kashmir",
+    "pincode": "190001",
+    "website": "https://www.gdcsrinagar.edu.in",
+    "latitude": 34.0837,
+    "longitude": 74.7973,
+    "scholarship_details": "State government scholarships, Merit scholarships, Need-based financial assistance available."
+  },
+  {
+    "name": "Government Degree College Jammu",
+    "address": "Canal Road, Jammu, Jammu and Kashmir, India",
+    "city": "Jammu",
+    "state": "Jammu and Kashmir",
+    "pincode": "180001",
+    "website": "https://www.gdcjammu.edu.in",
+    "latitude": 32.7266,
+    "longitude": 74.857,
+    "scholarship_details": "State government scholarships, Merit scholarships, Need-based financial assistance available."
+  },
+  {
+    "name": "Government College for Women Srinagar",
+    "address": "M.A. Road, Srinagar, Jammu and Kashmir, India",
+    "city": "Srinagar",
+    "state": "Jammu and Kashmir",
+    "pincode": "190001",
+    "website": "https://www.gcwsrinagar.edu.in",
+    "latitude": 34.0837,
+    "longitude": 74.7973,
+    "scholarship_details": "Women empowerment scholarships, Merit scholarships, State government scholarships available."
+  }
+]

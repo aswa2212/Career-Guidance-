@@ -60,6 +60,7 @@ const CollegeDetail = () => {
     phone: '+91-11-2659-1000',
     email: 'info@admin.iitd.ac.in',
     description: 'Indian Institute of Technology Delhi is one of the premier engineering institutions in India. Established in 1961, IIT Delhi has been a leader in engineering education and research.',
+    scholarship_details: 'Merit-based scholarships up to 100% tuition fee waiver for economically disadvantaged students. Institute Merit Scholarships for top 25% students. Research assistantships available for M.Tech and PhD programs. Special scholarships for SC/ST/OBC students as per government norms. Industry-sponsored scholarships from companies like TCS, Infosys, and Wipro.',
     images: ['/api/placeholder/800/400'],
     stats: {
       students: 11000,
@@ -157,6 +158,7 @@ const CollegeDetail = () => {
   const tabs = [
     { id: 'overview', label: 'Overview' },
     { id: 'courses', label: 'Courses' },
+    { id: 'scholarships', label: 'Scholarships' },
     { id: 'placements', label: 'Placements' },
     { id: 'reviews', label: 'Reviews' }
   ];
@@ -406,6 +408,99 @@ const CollegeDetail = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </Card>
+          )}
+
+          {activeTab === 'scholarships' && (
+            <Card>
+              <Card.Header>
+                <div className="flex items-center space-x-2">
+                  <Award className="w-5 h-5 text-yellow-600" />
+                  <Card.Title>Scholarship Opportunities</Card.Title>
+                </div>
+                <Card.Description>
+                  Financial aid and scholarship programs available for students
+                </Card.Description>
+              </Card.Header>
+              <div className="space-y-6">
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-6">
+                  <div className="flex items-start space-x-3">
+                    <Award className="w-6 h-6 text-yellow-600 mt-1" />
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900 mb-2">Available Scholarships</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        {college.scholarship_details}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      Merit-Based Scholarships
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Up to 100% tuition fee waiver</li>
+                      <li>• Based on JEE Advanced rank</li>
+                      <li>• Renewable annually with good grades</li>
+                      <li>• Additional stipend for top performers</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <CheckCircle className="w-4 h-4 text-blue-600 mr-2" />
+                      Need-Based Financial Aid
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Income-based fee concessions</li>
+                      <li>• Free hostel accommodation</li>
+                      <li>• Book and equipment allowances</li>
+                      <li>• Emergency financial support</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <CheckCircle className="w-4 h-4 text-purple-600 mr-2" />
+                      Research Assistantships
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Monthly stipend of ₹12,400-₹31,000</li>
+                      <li>• Available for M.Tech and PhD students</li>
+                      <li>• Work with faculty on research projects</li>
+                      <li>• Conference travel support</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                      <CheckCircle className="w-4 h-4 text-orange-600 mr-2" />
+                      Industry Scholarships
+                    </h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Sponsored by top tech companies</li>
+                      <li>• Internship opportunities included</li>
+                      <li>• Mentorship programs</li>
+                      <li>• Potential job offers upon graduation</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-900 mb-2">How to Apply</h4>
+                  <p className="text-blue-800 text-sm mb-3">
+                    Scholarship applications are typically processed during the admission process. 
+                    Contact the financial aid office for detailed eligibility criteria and application procedures.
+                  </p>
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Apply for Scholarships
+                  </Button>
+                </div>
               </div>
             </Card>
           )}

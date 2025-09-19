@@ -1,0 +1,138 @@
+[
+  {
+    "id": 1,
+    "question": "If 2x + 3 = 11, what is the value of x?",
+    "options": [
+      "A) 3",
+      "B) 4",
+      "C) 5",
+      "D) 6"
+    ],
+    "correct_answer": "B",
+    "subject": "Mathematics",
+    "difficulty": "Easy",
+    "topic": "Algebra",
+    "explanation": "Solving: 2x + 3 = 11, 2x = 8, x = 4",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Data Science, Finance, Research, Teaching"
+  },
+  {
+    "id": 2,
+    "question": "What is the area of a circle with radius 7 cm?",
+    "options": [
+      "A) 154 cm²",
+      "B) 144 cm²",
+      "C) 164 cm²",
+      "D) 174 cm²"
+    ],
+    "correct_answer": "A",
+    "subject": "Mathematics",
+    "difficulty": "Medium",
+    "topic": "Geometry",
+    "explanation": "Area = πr² = (22/7) × 7² = 154 cm²",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Data Science, Finance, Research, Teaching"
+  },
+  {
+    "id": 3,
+    "question": "What is the SI unit of force?",
+    "options": [
+      "A) Joule",
+      "B) Newton",
+      "C) Watt",
+      "D) Pascal"
+    ],
+    "correct_answer": "B",
+    "subject": "Physics",
+    "difficulty": "Easy",
+    "topic": "Mechanics",
+    "explanation": "Newton (N) is the SI unit of force",
+    "source": "Educational Database",
+    "career_relevance": "Engineering, Research, Astronomy, Medical Physics, Teaching"
+  },
+  {
+    "id": 4,
+    "question": "What is the chemical symbol for Gold?",
+    "options": [
+      "A) Go",
+      "B) Au",
+      "C) Ag",
+      "D) Gd"
+    ],
+    "correct_answer": "B",
+    "subject": "Chemistry",
+    "difficulty": "Easy",
+    "topic": "Periodic Table",
+    "explanation": "Au is the chemical symbol for Gold (from Latin: Aurum)",
+    "source": "Educational Database",
+    "career_relevance": "Chemical Engineering, Pharmaceuticals, Research, Medicine, Teaching"
+  },
+  {
+    "id": 5,
+    "question": "What is the powerhouse of the cell?",
+    "options": [
+      "A) Nucleus",
+      "B) Mitochondria",
+      "C) Ribosome",
+      "D) Chloroplast"
+    ],
+    "correct_answer": "B",
+    "subject": "Biology",
+    "difficulty": "Easy",
+    "topic": "Cell Biology",
+    "explanation": "Mitochondria are called the powerhouse of the cell as they produce ATP",
+    "source": "Educational Database",
+    "career_relevance": "Medicine, Biotechnology, Research, Environmental Science, Teaching"
+  },
+  {
+    "id": 6,
+    "question": "What does CPU stand for?",
+    "options": [
+      "A) Central Processing Unit",
+      "B) Computer Personal Unit",
+      "C) Central Program Unit",
+      "D) Computer Processing Unit"
+    ],
+    "correct_answer": "A",
+    "subject": "Computer Science",
+    "difficulty": "Easy",
+    "topic": "Computer Hardware",
+    "explanation": "CPU stands for Central Processing Unit",
+    "source": "Educational Database",
+    "career_relevance": "Software Development, Data Science, Cybersecurity, AI/ML, IT"
+  },
+  {
+    "id": 7,
+    "question": "What is the synonym of \"Happy\"?",
+    "options": [
+      "A) Sad",
+      "B) Joyful",
+      "C) Angry",
+      "D) Tired"
+    ],
+    "correct_answer": "B",
+    "subject": "English",
+    "difficulty": "Easy",
+    "topic": "Vocabulary",
+    "explanation": "Joyful is a synonym of Happy",
+    "source": "Educational Database",
+    "career_relevance": "Literature, Journalism, Content Writing, Teaching, Communications"
+  },
+  {
+    "id": 8,
+    "question": "What comes next in the series: 2, 4, 8, 16, ?",
+    "options": [
+      "A) 24",
+      "B) 32",
+      "C) 20",
+      "D) 18"
+    ],
+    "correct_answer": "B",
+    "subject": "Logical Reasoning",
+    "difficulty": "Easy",
+    "topic": "Number Series",
+    "explanation": "Each number is doubled: 2×2=4, 4×2=8, 8×2=16, 16×2=32",
+    "source": "Educational Database",
+    "career_relevance": "Management, Law, Consulting, Problem Solving, Analytics"
+  }
+]
