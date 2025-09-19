@@ -13,3 +13,4 @@ class College(BaseModel):
     website = Column(String(200))
     latitude = Column(Float)  # for nearby search
     longitude = Column(Float)  # for nearby search
+    scholarship_details = Column(Text, nullable=True)  # New field for scholarship information

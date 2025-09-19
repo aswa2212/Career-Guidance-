@@ -2,6 +2,8 @@ import json
 import os
 from typing import List, Dict, Any, Optional
 import logging
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 # Try to import ML dependencies, fall back to basic functionality if not available
 try:
@@ -28,8 +30,53 @@ class RecommendationEngine:
         self.course_vectors = None
         self.data_loaded = False
         
+    async def load_data_from_db(self, db: AsyncSession):
+        """Load data from database for recommendation engine"""
+        try:
+            if not ML_AVAILABLE:
+                logger.warning("ML dependencies not available, using basic fallback")
+                self.data_loaded = True
+                return True
+            
+            # Import services
+            from app.services.course_service import CourseService
+            
+            # Load courses from database
+            courses = await CourseService.get_all_courses(db, limit=1000)
+            
+            if not courses:
+                logger.warning("No courses found in database, using fallback")
+                return False
+            
+            # Convert to DataFrame format for ML processing
+            courses_data = []
+            for course in courses:
+                courses_data.append({
+                    'course_id': course.id,
+                    'course_name': course.title,
+                    'description': course.description or '',
+                    'required_skills': course.category or '',  # Using category as skills for now
+                    'career_paths': course.provider or '',     # Using provider as career paths for now
+                    'duration': course.duration or '',
+                    'level': course.difficulty_level or 'Beginner',
+                    'relevant_aptitude_areas': course.category or ''  # Using category for aptitude mapping
+                })
+            
+            self.courses_df = pd.DataFrame(courses_data)
+            logger.info(f"Loaded {len(self.courses_df)} courses from database")
+            
+            # Prepare TF-IDF vectors for courses
+            self._prepare_course_vectors()
+            
+            self.data_loaded = True
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error loading data from database: {str(e)}")
+            return False
+
     def load_data(self):
-        """Load mock datasets for recommendation engine"""
+        """Load mock datasets for recommendation engine (fallback method)"""
         try:
             if not ML_AVAILABLE:
                 logger.warning("ML dependencies not available, using basic fallback")
@@ -44,7 +91,7 @@ class RecommendationEngine:
             courses_path = os.path.join(data_dir, 'courses.csv')
             if os.path.exists(courses_path):
                 self.courses_df = pd.read_csv(courses_path)
-                logger.info(f"Loaded {len(self.courses_df)} courses")
+                logger.info(f"Loaded {len(self.courses_df)} courses from CSV")
             else:
                 logger.warning(f"Courses file not found at {courses_path}")
                 return False
@@ -56,7 +103,8 @@ class RecommendationEngine:
                 logger.info(f"Loaded aptitude data for {len(self.user_aptitude_df['user_id'].unique())} users")
             else:
                 logger.warning(f"Aptitude file not found at {aptitude_path}")
-                return False
+                # Create mock aptitude data
+                self.user_aptitude_df = None
             
             # Load user interests data
             interests_path = os.path.join(data_dir, 'user_interests.json')
@@ -66,7 +114,7 @@ class RecommendationEngine:
                 logger.info(f"Loaded interests for {len(self.user_interests)} users")
             else:
                 logger.warning(f"Interests file not found at {interests_path}")
-                return False
+                self.user_interests = {}
             
             # Prepare TF-IDF vectors for courses
             self._prepare_course_vectors()
@@ -145,10 +193,30 @@ class RecommendationEngine:
             logger.error(f"Error calculating aptitude bonus: {str(e)}")
             return 0.0
     
-    def get_recommendations(self, user_interests: List[str], user_id: Optional[int] = None, top_k: int = 10) -> List[Dict[str, Any]]:
+    async def get_user_interests_from_db(self, user_id: int, db: AsyncSession) -> List[str]:
+        """Get user interests from database"""
+        try:
+            from app.models.user import User
+            result = await db.execute(select(User).filter(User.id == user_id))
+            user = result.scalars().first()
+            
+            if user and user.interests:
+                return user.interests
+            return []
+        except Exception as e:
+            logger.error(f"Error fetching user interests from database: {str(e)}")
+            return []
+
+    async def get_recommendations(self, user_interests: List[str], user_id: Optional[int] = None, top_k: int = 10, db: Optional[AsyncSession] = None) -> List[Dict[str, Any]]:
         """Get personalized course recommendations for a user"""
         try:
-            if not self.data_loaded:
+            # Try to load data from database first
+            if db and not self.data_loaded:
+                if not await self.load_data_from_db(db):
+                    # Fallback to CSV data
+                    if not self.load_data():
+                        return self._get_fallback_recommendations(top_k)
+            elif not self.data_loaded:
                 if not self.load_data():
                     return self._get_fallback_recommendations(top_k)
             

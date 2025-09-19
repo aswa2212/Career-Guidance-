@@ -23,12 +23,23 @@ async def update_user_profile(
     db: AsyncSession = Depends(get_db)
 ):
     """Update current user's profile"""
-    for field, value in user_update.model_dump(exclude_unset=True).items():
-        setattr(current_user, field, value)
-    
-    await db.commit()
-    await db.refresh(current_user)
-    return current_user
+    try:
+        # Update user fields
+        for field, value in user_update.model_dump(exclude_unset=True).items():
+            setattr(current_user, field, value)
+        
+        # Add to session and commit
+        db.add(current_user)
+        await db.commit()
+        await db.refresh(current_user)
+        
+        return current_user
+    except Exception as e:
+        await db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to update profile: {str(e)}"
+        )
 
 @router.put("/me/interests", response_model=UserResponse)
 async def update_user_interests(
@@ -37,11 +48,22 @@ async def update_user_interests(
     db: AsyncSession = Depends(get_db)
 ):
     """Update current user's interests"""
-    current_user.interests = interests_update.interests
-    
-    await db.commit()
-    await db.refresh(current_user)
-    return current_user
+    try:
+        # Update the user's interests
+        current_user.interests = interests_update.interests
+        
+        # Add to session and commit
+        db.add(current_user)
+        await db.commit()
+        await db.refresh(current_user)
+        
+        return current_user
+    except Exception as e:
+        await db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to update interests: {str(e)}"
+        )
 
 @router.get("/me/interests")
 async def get_user_interests(

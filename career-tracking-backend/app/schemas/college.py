@@ -12,10 +12,23 @@ class CollegeBase(BaseModel):
     website: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+    scholarship_details: Optional[str] = None
 
 
 class CollegeCreate(CollegeBase):
     pass
+
+
+class CollegeUpdate(BaseModel):
+    name: Optional[str] = None
+    address: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
+    website: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    scholarship_details: Optional[str] = None
 
 
 class CollegeResponse(CollegeBase):

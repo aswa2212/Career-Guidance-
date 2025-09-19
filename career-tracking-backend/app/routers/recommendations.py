@@ -27,11 +27,18 @@ async def get_user_recommendations(
         if not user_interests:
             user_interests = ["programming", "technology", "career development"]
         
+        # Get fresh user interests from database if available
+        if current_user.id:
+            fresh_interests = await recommendation_engine.get_user_interests_from_db(current_user.id, db)
+            if fresh_interests:
+                user_interests = fresh_interests
+
         # Get recommendations from the engine
-        recommendations = recommendation_engine.get_recommendations(
+        recommendations = await recommendation_engine.get_recommendations(
             user_interests=user_interests,
             user_id=current_user.id,
-            top_k=limit
+            top_k=limit,
+            db=db
         )
         
         if not recommendations:
@@ -76,11 +83,18 @@ async def get_course_details(
 
 @router.post("/refresh")
 async def refresh_recommendations(
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
     """Refresh the recommendation engine data"""
     try:
-        success = recommendation_engine.load_data()
+        # Reset the data loaded flag to force reload
+        recommendation_engine.data_loaded = False
+        
+        # Try to load from database first, then fallback to CSV
+        success = await recommendation_engine.load_data_from_db(db)
+        if not success:
+            success = recommendation_engine.load_data()
         
         if success:
             return {"message": "Recommendation engine refreshed successfully"}
@@ -113,7 +127,7 @@ def _get_fallback_recommendations(limit: int = 10) -> List[dict]:
             "required_skills": ["Python", "Statistics", "Machine Learning", "Data Analysis"],
             "career_paths": ["Data Scientist", "ML Engineer", "Business Analyst", "Research Scientist"],
             "duration": "2 years",
-            "level": "Postgraduate",
+            "level": "Undergraduate",
             "similarity_score": 0.82,
             "final_score": 0.87,
             "match_percentage": 87
@@ -137,7 +151,7 @@ def _get_fallback_recommendations(limit: int = 10) -> List[dict]:
             "required_skills": ["Python", "Mathematics", "Neural Networks", "Deep Learning"],
             "career_paths": ["AI Engineer", "ML Researcher", "Robotics Engineer", "AI Consultant"],
             "duration": "2 years",
-            "level": "Postgraduate",
+            "level": "Undergraduate",
             "similarity_score": 0.80,
             "final_score": 0.82,
             "match_percentage": 82
