@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Career Tracking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        input[type="email"], input[type="password"] {
+            width: 200px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Career Tracking System - API Test</h1>
+        <p>This page tests the connection between frontend and backend APIs.</p>
+
+        <!-- Backend Health Check -->
+        <div class="test-section info">
+            <h3>🏥 Backend Health Check</h3>
+            <button onclick="testBackendHealth()">Test Backend Connection</button>
+            <div id="health-result"></div>
+        </div>
+
+        <!-- User Authentication -->
+        <div class="test-section info">
+            <h3>🔐 User Authentication</h3>
+            <div>
+                <input type="email" id="email" placeholder="Email" value="testuser@example.com">
+                <input type="password" id="password" placeholder="Password" value="testpassword123">
+            </div>
+            <button onclick="testLogin()">Login</button>
+            <button onclick="testRegister()">Register</button>
+            <div id="auth-result"></div>
+        </div>
+
+        <!-- User Interests -->
+        <div class="test-section info">
+            <h3>💡 User Interests</h3>
+            <button onclick="getUserInterests()">Get Interests</button>
+            <button onclick="updateUserInterests()">Update Interests</button>
+            <div id="interests-result"></div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="test-section info">
+            <h3>🎯 AI Recommendations</h3>
+            <button onclick="getRecommendations()">Get Recommendations</button>
+            <div id="recommendations-result"></div>
+        </div>
+
+        <!-- Log Output -->
+        <div class="test-section">
+            <h3>📋 Test Log</h3>
+            <button onclick="clearLog()">Clear Log</button>
+            <div id="log" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let authToken = null;
+
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').textContent = '';
+        }
+
+        function showResult(elementId, content, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = content;
+            element.className = `test-section ${type}`;
+        }
+
+        async function makeRequest(url, options = {}) {
+            try {
+                log(`Making request to: ${url}`);
+                const response = await fetch(url, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
+                        ...options.headers
+                    }
+                });
+
+                const data = await response.json();
+                log(`Response (${response.status}): ${JSON.stringify(data, null, 2)}`);
+                
+                return { status: response.status, data, ok: response.ok };
+            } catch (error) {
+                log(`Error: ${error.message}`);
+                return { status: 0, error: error.message, ok: false };
+            }
+        }
+
+        async function testBackendHealth() {
+            log('Testing backend health...');
+            const result = await makeRequest(`${API_BASE}/health`);
+            
+            if (result.ok) {
+                showResult('health-result', '✅ Backend is running and healthy!', 'success');
+            } else {
+                showResult('health-result', `❌ Backend health check failed: ${result.error || result.data?.detail}`, 'error');
+            }
+        }
+
+        async function testRegister() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            log('Testing user registration...');
+            const result = await makeRequest(`${API_BASE}/auth/register`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    full_name: 'Test User'
+                })
+            });
+
+            if (result.ok) {
+                showResult('auth-result', '✅ User registered successfully!', 'success');
+            } else if (result.status === 400) {
+                showResult('auth-result', 'ℹ️ User already exists, try logging in instead.', 'info');
+            } else {
+                showResult('auth-result', `❌ Registration failed: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            log('Testing user login...');
+            const formData = new FormData();
+            formData.append('username', email);
+            formData.append('password', password);
+
+            const result = await fetch(`${API_BASE}/auth/login`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (result.ok) {
+                const data = await result.json();
+                authToken = data.access_token;
+                log(`Login successful! Token: ${authToken.substring(0, 20)}...`);
+                showResult('auth-result', '✅ Login successful! Token saved.', 'success');
+            } else {
+                const errorData = await result.json();
+                showResult('auth-result', `❌ Login failed: ${errorData.detail}`, 'error');
+            }
+        }
+
+        async function getUserInterests() {
+            if (!authToken) {
+                showResult('interests-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            log('Getting user interests...');
+            const result = await makeRequest(`${API_BASE}/users/me/interests`);
+
+            if (result.ok) {
+                const interests = result.data.interests || [];
+                showResult('interests-result', `✅ Current interests: ${JSON.stringify(interests)}`, 'success');
+            } else {
+                showResult('interests-result', `❌ Failed to get interests: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function updateUserInterests() {
+            if (!authToken) {
+                showResult('interests-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            const testInterests = ['Data Science', 'Machine Learning', 'Web Development', 'AI', 'Python Programming'];
+            
+            log('Updating user interests...');
+            const result = await makeRequest(`${API_BASE}/users/me/interests`, {
+                method: 'PUT',
+                body: JSON.stringify({ interests: testInterests })
+            });
+
+            if (result.ok) {
+                const updatedInterests = result.data.interests || [];
+                showResult('interests-result', `✅ Interests updated: ${JSON.stringify(updatedInterests)}`, 'success');
+            } else {
+                showResult('interests-result', `❌ Failed to update interests: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function getRecommendations() {
+            if (!authToken) {
+                showResult('recommendations-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            log('Getting AI recommendations...');
+            const result = await makeRequest(`${API_BASE}/recommendations/?limit=3`);
+
+            if (result.ok) {
+                const recommendations = result.data.recommendations || [];
+                const userInterests = result.data.user_interests || [];
+                
+                let content = `✅ Recommendations received!<br>`;
+                content += `User interests: ${JSON.stringify(userInterests)}<br>`;
+                content += `Number of recommendations: ${recommendations.length}<br><br>`;
+                
+                recommendations.forEach((rec, index) => {
+                    content += `${index + 1}. ${rec.course_name} (${rec.match_percentage}% match)<br>`;
+                    content += `   ${rec.description}<br><br>`;
+                });
+                
+                showResult('recommendations-result', content, 'success');
+            } else {
+                showResult('recommendations-result', `❌ Failed to get recommendations: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        // Auto-test backend health on page load
+        window.onload = function() {
+            log('Page loaded. Testing backend connection...');
+            testBackendHealth();
+        };
+    </script>
+</body>
+</html>

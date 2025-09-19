@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Cache & Test - Career Tracking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .danger {
+            background-color: #dc3545;
+        }
+        .danger:hover {
+            background-color: #c82333;
+        }
+        .log {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        input[type="email"], input[type="password"] {
+            width: 200px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧹 Clear Cache & Test System</h1>
+        <p>This page helps clear all caches and test the updated system functionality.</p>
+
+        <!-- Clear Cache Section -->
+        <div class="test-section warning">
+            <h3>🧹 Clear All Caches</h3>
+            <p>Click this button to clear all browser caches and storage:</p>
+            <button onclick="clearAllCaches()" class="danger">Clear All Caches & Storage</button>
+            <div id="cache-result"></div>
+        </div>
+
+        <!-- Test Authentication -->
+        <div class="test-section info">
+            <h3>🔐 Test Authentication</h3>
+            <div>
+                <input type="email" id="email" placeholder="Email" value="testuser@example.com">
+                <input type="password" id="password" placeholder="Password" value="testpassword123">
+            </div>
+            <button onclick="testLogin()">Login & Test</button>
+            <div id="auth-result"></div>
+        </div>
+
+        <!-- Test Interests -->
+        <div class="test-section info">
+            <h3>💡 Test Interests (Fixed)</h3>
+            <button onclick="testInterests()">Test Interests Loading</button>
+            <button onclick="updateTestInterests()">Update Test Interests</button>
+            <div id="interests-result"></div>
+        </div>
+
+        <!-- Test Colleges (Database Sync) -->
+        <div class="test-section info">
+            <h3>🏫 Test Colleges (Database Sync)</h3>
+            <button onclick="testColleges()">Load Colleges from Database</button>
+            <button onclick="searchSNSCollege()">Search for SNS College</button>
+            <div id="colleges-result"></div>
+        </div>
+
+        <!-- Test Recommendations -->
+        <div class="test-section info">
+            <h3>🎯 Test Recommendations</h3>
+            <button onclick="testRecommendations()">Get Fresh Recommendations</button>
+            <div id="recommendations-result"></div>
+        </div>
+
+        <!-- Log Output -->
+        <div class="test-section">
+            <h3>📋 Test Log</h3>
+            <button onclick="clearLog()">Clear Log</button>
+            <div id="log" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let authToken = null;
+
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').textContent = '';
+        }
+
+        function showResult(elementId, content, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = content;
+            element.className = `test-section ${type}`;
+        }
+
+        function clearAllCaches() {
+            log('Clearing all caches and storage...');
+            
+            // Clear localStorage
+            localStorage.clear();
+            log('✅ LocalStorage cleared');
+            
+            // Clear sessionStorage
+            sessionStorage.clear();
+            log('✅ SessionStorage cleared');
+            
+            // Clear cookies
+            document.cookie.split(";").forEach(function(c) { 
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            });
+            log('✅ Cookies cleared');
+            
+            // Clear auth token
+            authToken = null;
+            log('✅ Auth token cleared');
+            
+            showResult('cache-result', '✅ All caches and storage cleared! Please refresh the main app.', 'success');
+            
+            // Optionally reload the page after a delay
+            setTimeout(() => {
+                if (confirm('Cache cleared! Do you want to reload this page?')) {
+                    window.location.reload();
+                }
+            }, 2000);
+        }
+
+        async function makeRequest(url, options = {}) {
+            try {
+                log(`Making request to: ${url}`);
+                
+                // Add cache-busting timestamp
+                const separator = url.includes('?') ? '&' : '?';
+                const cacheBustUrl = `${url}${separator}_t=${Date.now()}`;
+                
+                const response = await fetch(cacheBustUrl, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache',
+                        'Expires': '0',
+                        ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
+                        ...options.headers
+                    }
+                });
+
+                const data = await response.json();
+                log(`Response (${response.status}): ${JSON.stringify(data, null, 2)}`);
+                
+                return { status: response.status, data, ok: response.ok };
+            } catch (error) {
+                log(`Error: ${error.message}`);
+                return { status: 0, error: error.message, ok: false };
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            log('Testing login with fresh request...');
+            const formData = new FormData();
+            formData.append('username', email);
+            formData.append('password', password);
+
+            const result = await fetch(`${API_BASE}/auth/login?_t=${Date.now()}`, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            });
+
+            if (result.ok) {
+                const data = await result.json();
+                authToken = data.access_token;
+                log(`Login successful! Token: ${authToken.substring(0, 20)}...`);
+                showResult('auth-result', '✅ Login successful! Ready to test other features.', 'success');
+            } else {
+                const errorData = await result.json();
+                showResult('auth-result', `❌ Login failed: ${errorData.detail}`, 'error');
+            }
+        }
+
+        async function testInterests() {
+            if (!authToken) {
+                showResult('interests-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            log('Testing interests loading with fresh request...');
+            const result = await makeRequest(`${API_BASE}/users/me/interests`);
+
+            if (result.ok) {
+                const interests = result.data.interests || [];
+                showResult('interests-result', `✅ Interests loaded successfully: ${JSON.stringify(interests)}`, 'success');
+            } else {
+                showResult('interests-result', `❌ Failed to load interests: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function updateTestInterests() {
+            if (!authToken) {
+                showResult('interests-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            const testInterests = ['Data Science', 'Machine Learning', 'Web Development', 'AI', 'Python', 'React'];
+            
+            log('Updating interests with fresh request...');
+            const result = await makeRequest(`${API_BASE}/users/me/interests`, {
+                method: 'PUT',
+                body: JSON.stringify({ interests: testInterests })
+            });
+
+            if (result.ok) {
+                showResult('interests-result', `✅ Interests updated successfully: ${JSON.stringify(testInterests)}`, 'success');
+            } else {
+                showResult('interests-result', `❌ Failed to update interests: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function testColleges() {
+            log('Testing colleges loading from database...');
+            const result = await makeRequest(`${API_BASE}/colleges/`);
+
+            if (result.ok) {
+                const colleges = result.data;
+                log(`Found ${colleges.length} colleges in database`);
+                
+                let content = `✅ Loaded ${colleges.length} colleges from database:<br><br>`;
+                colleges.slice(0, 10).forEach((college, index) => {
+                    content += `${index + 1}. ${college.name} - ${college.city}, ${college.state}<br>`;
+                });
+                
+                if (colleges.length > 10) {
+                    content += `<br>... and ${colleges.length - 10} more colleges`;
+                }
+                
+                showResult('colleges-result', content, 'success');
+            } else {
+                showResult('colleges-result', `❌ Failed to load colleges: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function searchSNSCollege() {
+            log('Searching for SNS college...');
+            const result = await makeRequest(`${API_BASE}/colleges/search?query=SNS`);
+
+            if (result.ok) {
+                const colleges = result.data;
+                
+                if (colleges.length > 0) {
+                    let content = `✅ Found ${colleges.length} SNS college(s):<br><br>`;
+                    colleges.forEach((college, index) => {
+                        content += `${index + 1}. ${college.name}<br>`;
+                        content += `   Location: ${college.city}, ${college.state}<br>`;
+                        content += `   Address: ${college.address}<br><br>`;
+                    });
+                    showResult('colleges-result', content, 'success');
+                } else {
+                    showResult('colleges-result', '❌ No SNS college found. Make sure you updated the database correctly.', 'warning');
+                }
+            } else {
+                showResult('colleges-result', `❌ Failed to search colleges: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        async function testRecommendations() {
+            if (!authToken) {
+                showResult('recommendations-result', '❌ Please login first!', 'error');
+                return;
+            }
+
+            log('Testing recommendations with fresh request...');
+            const result = await makeRequest(`${API_BASE}/recommendations/?limit=5`);
+
+            if (result.ok) {
+                const recData = result.data;
+                const recommendations = recData.recommendations || [];
+                const userInterests = recData.user_interests || [];
+                
+                let content = `✅ Recommendations loaded successfully!<br>`;
+                content += `User interests: ${JSON.stringify(userInterests)}<br>`;
+                content += `Number of recommendations: ${recommendations.length}<br><br>`;
+                
+                recommendations.forEach((rec, index) => {
+                    content += `${index + 1}. ${rec.course_name} (${rec.match_percentage}% match)<br>`;
+                    content += `   ${rec.description}<br><br>`;
+                });
+                
+                showResult('recommendations-result', content, 'success');
+            } else {
+                showResult('recommendations-result', `❌ Failed to get recommendations: ${result.data?.detail || result.error}`, 'error');
+            }
+        }
+
+        // Auto-clear cache warning on page load
+        window.onload = function() {
+            log('Page loaded. Ready to clear caches and test functionality.');
+            showResult('cache-result', '⚠️ Click "Clear All Caches" first to ensure fresh data loading.', 'warning');
+        };
+    </script>
+</body>
+</html>
