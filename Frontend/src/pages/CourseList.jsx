@@ -411,21 +411,6 @@ const CourseList = () => {
                             </p>
                           </div>
 
-                          <div className="text-center p-3 rounded-lg bg-gradient-to-br from-primary/5 to-secondary/5">
-                            <DollarSign className={`w-5 h-5 mx-auto mb-1 ${
-                              isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                            }`} />
-                            <p className={`text-xs ${
-                              isDarkMode ? 'text-gray-400' : 'text-gray-500'
-                            }`}>
-                              Avg. Fee
-                            </p>
-                            <p className={`font-semibold ${
-                              isDarkMode ? 'text-white' : 'text-gray-900'
-                            }`}>
-                              ${course.averageFee.toLocaleString()}
-                            </p>
-                          </div>
 
                           <div className="text-center p-3 rounded-lg bg-gradient-to-br from-primary/5 to-secondary/5">
                             <TrendingUp className={`w-5 h-5 mx-auto mb-1 ${

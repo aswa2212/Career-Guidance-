@@ -1,14 +1,16 @@
 import re
 import json
+import random
 from typing import List, Dict, Any
 from .base_scraper import BaseScraper, logger
 
 class AptitudeScraper(BaseScraper):
-    """Scraper for aptitude questions from various educational sources"""
+    """Enhanced scraper for aptitude questions with real-time generation"""
     
     def __init__(self):
         super().__init__(delay_range=(2, 4))
         self.questions = []
+        self.question_templates = self._load_question_templates()
     
     def scrape_subject_based_questions(self) -> List[Dict]:
         """Create comprehensive aptitude questions for different subjects"""
@@ -423,12 +425,190 @@ class AptitudeScraper(BaseScraper):
         
         return advanced_questions
     
+    def _load_question_templates(self) -> Dict[str, List[Dict]]:
+        """Load question templates for dynamic generation"""
+        return {
+            'mathematics': [
+                {
+                    'template': 'If {a}x + {b} = {c}, what is the value of x?',
+                    'answer_func': lambda a, b, c: (c - b) / a,
+                    'difficulty': 'Easy'
+                },
+                {
+                    'template': 'What is the area of a circle with radius {r} cm?',
+                    'answer_func': lambda r: 3.14159 * r * r,
+                    'difficulty': 'Medium'
+                },
+                {
+                    'template': 'If a train travels {distance} km in {time} hours, what is its speed?',
+                    'answer_func': lambda distance, time: distance / time,
+                    'difficulty': 'Easy'
+                }
+            ],
+            'logical_reasoning': [
+                {
+                    'template': 'What comes next in the series: {series}?',
+                    'pattern_type': 'arithmetic',
+                    'difficulty': 'Medium'
+                },
+                {
+                    'template': 'If all {category1} are {category2} and some {category2} are {category3}, which conclusion is correct?',
+                    'difficulty': 'Hard'
+                }
+            ]
+        }
+    
+    def generate_dynamic_questions(self, count: int = 50) -> List[Dict]:
+        """Generate dynamic aptitude questions"""
+        questions = []
+        
+        # Generate math questions
+        for i in range(count // 3):
+            # Linear equation questions
+            a = random.randint(2, 10)
+            b = random.randint(1, 20)
+            c = random.randint(10, 50)
+            x = (c - b) / a
+            
+            options = [x, x + 1, x - 1, x + 2]
+            random.shuffle(options)
+            correct_idx = options.index(x)
+            
+            questions.append({
+                'question': f'If {a}x + {b} = {c}, what is the value of x?',
+                'options': [f'{chr(65+i)}) {opt}' for i, opt in enumerate(options)],
+                'correct_answer': chr(65 + correct_idx),
+                'subject': 'Mathematics',
+                'difficulty': 'Easy',
+                'topic': 'Algebra',
+                'explanation': f'Solving: {a}x + {b} = {c}, {a}x = {c-b}, x = {x}',
+                'id': len(questions) + 1,
+                'source': 'Dynamic Generation',
+                'career_relevance': 'Engineering, Data Science, Finance'
+            })
+        
+        # Generate logical reasoning questions
+        for i in range(count // 3):
+            # Number series
+            start = random.randint(1, 10)
+            diff = random.randint(2, 5)
+            series = [start + i * diff for i in range(4)]
+            next_num = series[-1] + diff
+            
+            options = [next_num, next_num + diff, next_num - diff, next_num + 2*diff]
+            random.shuffle(options)
+            correct_idx = options.index(next_num)
+            
+            questions.append({
+                'question': f'What comes next in the series: {", ".join(map(str, series))}, ?',
+                'options': [f'{chr(65+i)}) {opt}' for i, opt in enumerate(options)],
+                'correct_answer': chr(65 + correct_idx),
+                'subject': 'Logical Reasoning',
+                'difficulty': 'Medium',
+                'topic': 'Number Series',
+                'explanation': f'Each number increases by {diff}: {series[-1]} + {diff} = {next_num}',
+                'id': len(questions) + 1,
+                'source': 'Dynamic Generation',
+                'career_relevance': 'Management, Analytics, Problem Solving'
+            })
+        
+        # Generate general knowledge questions
+        gk_questions = [
+            {
+                'question': 'What is the capital of India?',
+                'options': ['A) Mumbai', 'B) New Delhi', 'C) Kolkata', 'D) Chennai'],
+                'correct_answer': 'B',
+                'subject': 'General Knowledge',
+                'difficulty': 'Easy',
+                'topic': 'Geography'
+            },
+            {
+                'question': 'Who is known as the Father of the Nation in India?',
+                'options': ['A) Jawaharlal Nehru', 'B) Mahatma Gandhi', 'C) Sardar Patel', 'D) Subhas Chandra Bose'],
+                'correct_answer': 'B',
+                'subject': 'General Knowledge',
+                'difficulty': 'Easy',
+                'topic': 'History'
+            },
+            {
+                'question': 'Which planet is known as the Red Planet?',
+                'options': ['A) Venus', 'B) Jupiter', 'C) Mars', 'D) Saturn'],
+                'correct_answer': 'C',
+                'subject': 'General Knowledge',
+                'difficulty': 'Easy',
+                'topic': 'Science'
+            }
+        ]
+        
+        for i, gk in enumerate(gk_questions[:count//3]):
+            gk.update({
+                'id': len(questions) + i + 1,
+                'source': 'Curated Content',
+                'explanation': f'This is a standard {gk["topic"].lower()} question.',
+                'career_relevance': 'General Knowledge, Civil Services, Teaching'
+            })
+            questions.append(gk)
+        
+        return questions
+    
+    def scrape_online_aptitude_sources(self) -> List[Dict]:
+        """Try to scrape aptitude questions from online sources"""
+        questions = []
+        
+        try:
+            # Try to get questions from aptitude websites
+            aptitude_sites = [
+                'https://www.indiabix.com/aptitude/questions-and-answers/',
+                'https://www.geeksforgeeks.org/aptitude-questions-and-answers/'
+            ]
+            
+            for site in aptitude_sites:
+                try:
+                    soup = self.get_page(site)
+                    if soup:
+                        # Look for question patterns
+                        question_elements = soup.find_all(['div', 'p'], class_=re.compile(r'question|problem'))
+                        
+                        for elem in question_elements[:5]:  # Limit to avoid too many requests
+                            question_text = self.clean_text(elem.get_text())
+                            if len(question_text) > 20 and '?' in question_text:
+                                questions.append({
+                                    'question': question_text,
+                                    'options': ['A) Option 1', 'B) Option 2', 'C) Option 3', 'D) Option 4'],
+                                    'correct_answer': 'A',
+                                    'subject': 'Aptitude',
+                                    'difficulty': 'Medium',
+                                    'topic': 'General',
+                                    'source': 'Online Source',
+                                    'explanation': 'Scraped from online aptitude source',
+                                    'career_relevance': 'General Aptitude'
+                                })
+                except Exception as e:
+                    logger.warning(f"Error scraping {site}: {e}")
+                    continue
+                    
+        except Exception as e:
+            logger.error(f"Error scraping online aptitude sources: {e}")
+        
+        return questions
+    
     def scrape(self) -> List[Dict[str, Any]]:
-        """Main scraping method for aptitude questions"""
+        """Main scraping method for aptitude questions with real-time generation"""
         all_questions = []
         
         try:
-            # Get basic subject questions
+            # Try to get questions from online sources
+            logger.info("Attempting to scrape online aptitude sources...")
+            online_questions = self.scrape_online_aptitude_sources()
+            all_questions.extend(online_questions)
+            
+            # Generate dynamic questions
+            logger.info("Generating dynamic aptitude questions...")
+            dynamic_questions = self.generate_dynamic_questions(60)
+            all_questions.extend(dynamic_questions)
+            
+            # Get curated subject questions as fallback
+            logger.info("Adding curated subject questions...")
             basic_questions = self.scrape_subject_based_questions()
             all_questions.extend(basic_questions)
             
@@ -436,17 +616,23 @@ class AptitudeScraper(BaseScraper):
             advanced_questions = self.create_advanced_questions()
             all_questions.extend(advanced_questions)
             
-            logger.info(f"Created {len(all_questions)} aptitude questions")
+            # Shuffle questions for variety
+            random.shuffle(all_questions)
+            
+            logger.info(f"Created {len(all_questions)} total aptitude questions")
             
             # Group by subject for ML model
             subject_distribution = {}
             for q in all_questions:
-                subject = q['subject']
+                subject = q.get('subject', 'Unknown')
                 subject_distribution[subject] = subject_distribution.get(subject, 0) + 1
             
             logger.info(f"Question distribution by subject: {subject_distribution}")
             
         except Exception as e:
             logger.error(f"Error during aptitude question creation: {e}")
+            # Return at least some questions even if there's an error
+            if not all_questions:
+                all_questions = self.scrape_subject_based_questions()[:20]
         
-        return all_questions
+        return all_questions[:100]  # Limit to 100 questions

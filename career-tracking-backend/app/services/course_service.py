@@ -5,7 +5,6 @@ from sqlalchemy.orm import selectinload
 import logging
 
 from app.models.course import Course
-from app.models.college import College
 
 logger = logging.getLogger(__name__)
 
@@ -98,58 +97,4 @@ class CourseService:
             logger.error(f"Error fetching courses by interests: {str(e)}")
             return []
 
-class CollegeService:
-    """Service for handling college-related operations"""
-    
-    @staticmethod
-    async def get_all_colleges(db: AsyncSession, limit: int = 100) -> List[College]:
-        """Get all colleges from database"""
-        try:
-            result = await db.execute(
-                select(College)
-                .limit(limit)
-                .order_by(College.created_at.desc())
-            )
-            return result.scalars().all()
-        except Exception as e:
-            logger.error(f"Error fetching colleges: {str(e)}")
-            return []
-    
-    @staticmethod
-    async def get_college_by_id(db: AsyncSession, college_id: int) -> Optional[College]:
-        """Get a specific college by ID"""
-        try:
-            result = await db.execute(select(College).filter(College.id == college_id))
-            return result.scalars().first()
-        except Exception as e:
-            logger.error(f"Error fetching college {college_id}: {str(e)}")
-            return None
-    
-    @staticmethod
-    async def search_colleges(
-        db: AsyncSession,
-        query: str = None,
-        city: str = None,
-        state: str = None,
-        limit: int = 50
-    ) -> List[College]:
-        """Search colleges with filters"""
-        try:
-            stmt = select(College)
-            
-            if query:
-                stmt = stmt.filter(College.name.ilike(f"%{query}%"))
-            
-            if city:
-                stmt = stmt.filter(College.city.ilike(f"%{city}%"))
-            
-            if state:
-                stmt = stmt.filter(College.state.ilike(f"%{state}%"))
-            
-            stmt = stmt.limit(limit).order_by(College.created_at.desc())
-            
-            result = await db.execute(stmt)
-            return result.scalars().all()
-        except Exception as e:
-            logger.error(f"Error searching colleges: {str(e)}")
-            return []
+# CollegeService moved to separate file: app/services/college_service.py

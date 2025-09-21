@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Python for Everybody Specialization",
+    "provider": "Coursera",
+    "description": "Learn to Program and Analyze Data with Python. Develop programs to gather, clean, analyze, and visualize data.",
+    "duration": "8 months",
+    "difficulty_level": "Beginner",
+    "category": "Programming",
+    "url": "https://www.coursera.org/specializations/python"
+  },
+  {
+    "title": "Machine Learning Course",
+    "provider": "Coursera",
+    "description": "Learn about the most effective machine learning techniques, and gain practice implementing them.",
+    "duration": "11 weeks",
+    "difficulty_level": "Intermediate",
+    "category": "Machine Learning",
+    "url": "https://www.coursera.org/learn/machine-learning"
+  },
+  {
+    "title": "Algebra Basics",
+    "provider": "Khan Academy",
+    "description": "Learn the basics of algebra including variables, expressions, and equations.",
+    "duration": "Self-paced",
+    "difficulty_level": "Beginner",
+    "category": "Math",
+    "url": "https://www.khanacademy.org/math/algebra-basics"
+  },
+  {
+    "title": "Intro to Programming",
+    "provider": "Khan Academy",
+    "description": "Learn the basics of programming with interactive exercises.",
+    "duration": "Self-paced",
+    "difficulty_level": "Beginner",
+    "category": "Computing",
+    "url": "https://www.khanacademy.org/computing/intro-to-programming"
+  },
+  {
+    "title": "CS50: Introduction to Computer Science",
+    "provider": "edX",
+    "description": "An introduction to the intellectual enterprises of computer science and the art of programming.",
+    "duration": "12 weeks",
+    "difficulty_level": "Beginner",
+    "category": "Programming",
+    "url": "https://www.edx.org/course/cs50s-introduction-to-computer-science"
+  },
+  {
+    "title": "Data Science MicroMasters",
+    "provider": "edX",
+    "description": "Master the skills needed to be a data scientist and get hands-on experience with the tools.",
+    "duration": "1 year",
+    "difficulty_level": "Advanced",
+    "category": "Data Science",
+    "url": "https://www.edx.org/micromasters/mitx-statistics-and-data-science"
+  },
+  {
+    "title": "Web Development Bootcamp",
+    "provider": "Coursera",
+    "description": "Learn HTML, CSS, JavaScript, and modern web development frameworks.",
+    "duration": "6 months",
+    "difficulty_level": "Intermediate",
+    "category": "Web Development",
+    "url": "https://www.coursera.org/specializations/web-development"
+  },
+  {
+    "title": "Digital Marketing Specialization",
+    "provider": "Coursera",
+    "description": "Master digital marketing strategy, analytics, and optimization.",
+    "duration": "4 months",
+    "difficulty_level": "Beginner",
+    "category": "Digital Marketing",
+    "url": "https://www.coursera.org/specializations/digital-marketing"
+  },
+  {
+    "title": "Introduction to Artificial Intelligence",
+    "provider": "edX",
+    "description": "Learn the fundamentals of AI including search, logic, and machine learning.",
+    "duration": "16 weeks",
+    "difficulty_level": "Intermediate",
+    "category": "Artificial Intelligence",
+    "url": "https://www.edx.org/course/artificial-intelligence-ai"
+  },
+  {
+    "title": "Financial Markets",
+    "provider": "Coursera",
+    "description": "Learn about financial institutions, markets, and instruments.",
+    "duration": "7 weeks",
+    "difficulty_level": "Beginner",
+    "category": "Finance",
+    "url": "https://www.coursera.org/learn/financial-markets-global"
+  }
+]

@@ -496,10 +496,20 @@ const CollegeDetail = () => {
                     Scholarship applications are typically processed during the admission process. 
                     Contact the financial aid office for detailed eligibility criteria and application procedures.
                   </p>
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Apply for Scholarships
-                  </Button>
+                  <div className="flex space-x-2">
+                    <Button 
+                      size="sm" 
+                      className="bg-blue-600 hover:bg-blue-700"
+                      onClick={() => window.open('https://scholarships.gov.in/All-Scholarships#:~:text=Pm%20Usp%20Special%20Scholarship%20Scheme,MNO%20Verification%20%3A%20Opening%20Soon', '_blank')}
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Government Scholarships
+                    </Button>
+                    <Button size="sm" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      College Scholarships
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>

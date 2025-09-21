@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db, engine
 from app import models
-from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course, courses, colleges, recommendations
+from app.routers import auth, aptitude, suggestions, career, college, timeline, user, course, courses, colleges, recommendations, admin
 
 app = FastAPI(
     title="NEXTSTEP Career Guidance API",
@@ -39,6 +39,7 @@ app.include_router(colleges.router)  # New colleges router with real data
 app.include_router(timeline.router)
 app.include_router(user.router)
 app.include_router(recommendations.router)
+app.include_router(admin.router)
 
 @app.get("/")
 async def read_root():

@@ -1,0 +1,162 @@
+[
+  {
+    "title": "Software Engineer",
+    "description": "Professional role in software engineer with various responsibilities and growth opportunities.",
+    "field": "Technology",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Programming, Problem-solving, Teamwork, Communication"
+  },
+  {
+    "title": "Data Scientist",
+    "description": "Professional role in data scientist with various responsibilities and growth opportunities.",
+    "field": "General",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Python, SQL, Statistics, Machine Learning, Visualization"
+  },
+  {
+    "title": "Product Manager",
+    "description": "Professional role in product manager with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Leadership, Communication, Project Management, Strategic Planning"
+  },
+  {
+    "title": "Marketing Manager",
+    "description": "Professional role in marketing manager with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Leadership, Communication, Project Management, Strategic Planning"
+  },
+  {
+    "title": "Sales Representative",
+    "description": "Professional role in sales representative with various responsibilities and growth opportunities.",
+    "field": "Marketing",
+    "median_salary": "$30,000 - $55,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Negotiation, CRM, Customer Service"
+  },
+  {
+    "title": "Nurse",
+    "description": "Professional role in nurse with various responsibilities and growth opportunities.",
+    "field": "Healthcare",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Patient Care, Medical Knowledge, Communication, Empathy"
+  },
+  {
+    "title": "Teacher",
+    "description": "Professional role in teacher with various responsibilities and growth opportunities.",
+    "field": "Education",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Curriculum Development, Classroom Management"
+  },
+  {
+    "title": "Accountant",
+    "description": "Professional role in accountant with various responsibilities and growth opportunities.",
+    "field": "General",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Financial Analysis, Excel, Attention to Detail, Compliance"
+  },
+  {
+    "title": "Graphic Designer",
+    "description": "Professional role in graphic designer with various responsibilities and growth opportunities.",
+    "field": "Design",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Creative Software, Visual Design, User Experience, Typography"
+  },
+  {
+    "title": "Project Manager",
+    "description": "Professional role in project manager with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Leadership, Communication, Project Management, Strategic Planning"
+  },
+  {
+    "title": "Business Analyst",
+    "description": "Professional role in business analyst with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$45,000 - $80,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Web Developer",
+    "description": "Professional role in web developer with various responsibilities and growth opportunities.",
+    "field": "Technology",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Cybersecurity Analyst",
+    "description": "Professional role in cybersecurity analyst with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$45,000 - $80,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Financial Advisor",
+    "description": "Professional role in financial advisor with various responsibilities and growth opportunities.",
+    "field": "Finance",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Human Resources",
+    "description": "Professional role in human resources with various responsibilities and growth opportunities.",
+    "field": "General",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Operations Manager",
+    "description": "Professional role in operations manager with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Leadership, Communication, Project Management, Strategic Planning"
+  },
+  {
+    "title": "Content Writer",
+    "description": "Professional role in content writer with various responsibilities and growth opportunities.",
+    "field": "Marketing",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Social Media Manager",
+    "description": "Professional role in social media manager with various responsibilities and growth opportunities.",
+    "field": "Business",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Leadership, Communication, Project Management, Strategic Planning"
+  },
+  {
+    "title": "Customer Service",
+    "description": "Professional role in customer service with various responsibilities and growth opportunities.",
+    "field": "General",
+    "median_salary": "$40,000 - $70,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  },
+  {
+    "title": "Mechanical Engineer",
+    "description": "Professional role in mechanical engineer with various responsibilities and growth opportunities.",
+    "field": "Technology",
+    "median_salary": "$60,000 - $120,000",
+    "job_outlook": "Average",
+    "required_skills": "Communication, Problem-solving, Teamwork, Adaptability"
+  }
+]

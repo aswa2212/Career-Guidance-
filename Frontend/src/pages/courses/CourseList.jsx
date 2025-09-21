@@ -355,11 +355,7 @@ const CourseList = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200 mt-auto">
-                  <div>
-                    <p className="text-sm text-gray-500">Average Fee</p>
-                    <p className="font-semibold text-gray-900">{course.averageFee}</p>
-                  </div>
+                <div className="flex items-center justify-end pt-4 border-t border-gray-200 mt-auto">
                   <Link to={`/courses/${course.id}`}>
                     <Button size="sm">
                       View Details

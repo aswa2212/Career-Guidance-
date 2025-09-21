@@ -485,15 +485,22 @@ const CollegeDirectory = () => {
               </div>
 
               <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <div>
-                  <p className="text-sm text-gray-500">Annual Fees</p>
-                  <p className="font-semibold text-lg text-gray-900">{college.fees}</p>
-                </div>
                 <div className="flex items-center space-x-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center space-x-1 bg-yellow-50 border-yellow-300 text-yellow-700 hover:bg-yellow-100"
+                    onClick={() => window.open('https://scholarships.gov.in/All-Scholarships#:~:text=Pm%20Usp%20Special%20Scholarship%20Scheme,MNO%20Verification%20%3A%20Opening%20Soon', '_blank')}
+                  >
+                    <Award className="w-3 h-3" />
+                    <span>Scholarships</span>
+                  </Button>
                   <Button variant="outline" size="sm" className="flex items-center space-x-1">
                     <Phone className="w-3 h-3" />
                     <span>Contact</span>
                   </Button>
+                </div>
+                <div>
                   <Link to={`/colleges/${college.id}`}>
                     <Button size="sm">
                       View Details

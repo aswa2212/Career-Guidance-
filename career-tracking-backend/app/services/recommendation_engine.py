@@ -265,14 +265,22 @@ class RecommendationEngine:
             
             # Sort by final score and get top recommendations
             final_scores.sort(key=lambda x: x[1], reverse=True)
-            top_indices = [idx for idx, _ in final_scores[:top_k]]
+            top_recommendations = final_scores[:top_k]
             
             # Format recommendations
             recommendations = []
-            for idx in top_indices:
+            for idx, final_score in top_recommendations:
                 course = self.courses_df.iloc[idx]
                 similarity_score = similarities[idx]
-                final_score = final_scores[idx][1]
+                
+                # Calculate match percentage properly
+                # Handle edge cases where final_score might be very close to 1.0
+                match_percentage = round(final_score * 100)
+                match_percentage = max(0, min(match_percentage, 100))  # Ensure it's between 0-100
+                
+                # Debug logging for high scores
+                if final_score > 0.95:
+                    logger.info(f"High match found: {course['course_name']} - Final Score: {final_score:.4f}, Match %: {match_percentage}%")
                 
                 recommendation = {
                     'course_id': int(course['course_id']),
@@ -284,7 +292,7 @@ class RecommendationEngine:
                     'level': course['level'],
                     'similarity_score': float(similarity_score),
                     'final_score': float(final_score),
-                    'match_percentage': min(int(final_score * 100), 100)
+                    'match_percentage': match_percentage
                 }
                 recommendations.append(recommendation)
             
